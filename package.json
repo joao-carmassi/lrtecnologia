@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && next-image-export-optimizer",
-    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "build": "next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.js && next-image-export-optimizer && copy CNAME out\\",
     "start": "next start",
     "lint": "next lint"
   },
