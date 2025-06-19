@@ -43,6 +43,7 @@ const formSchema = z.object({
   email: z.string().nonempty('Este campo é obrigatório.'),
   telefone: z.string().optional(),
   servicos: z.array(z.string()).optional(),
+  outro_servico: z.string().optional(),
   novo_projeto: z.string().optional(),
   projeto_atual: z.string().optional(),
   forma_contato: z.array(z.string()).optional(),
@@ -57,6 +58,7 @@ export default function MyForm() {
       email: '',
       telefone: '',
       servicos: [],
+      outro_servico: '',
       novo_projeto: '',
       projeto_atual: '',
       forma_contato: [],
@@ -65,6 +67,7 @@ export default function MyForm() {
 
   const [enviado, setEnviado] = useState<null | boolean>(null);
   const [dialogOpened, setDialogOpened] = useState<boolean>(false);
+  const selectedServicos = form.watch('servicos');
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     setDialogOpened(true);
@@ -199,7 +202,9 @@ export default function MyForm() {
               <FormControl>
                 <MultiSelector
                   values={field.value as string[]}
-                  onValuesChange={field.onChange}
+                  onValuesChange={(e) => {
+                    field.onChange(e);
+                  }}
                   loop
                   className="max-w-xs"
                 >
@@ -212,23 +217,26 @@ export default function MyForm() {
                   </MultiSelectorTrigger>
                   <MultiSelectorContent>
                     <MultiSelectorList>
-                      <MultiSelectorItem value={'analise_dado'}>
+                      <MultiSelectorItem value={'Analise de dado'}>
                         Análise de dados
                       </MultiSelectorItem>
                       <MultiSelectorItem value={'BI'}>
                         Business intelligence / dashboards
                       </MultiSelectorItem>
-                      <MultiSelectorItem value={'consultoria_TI'}>
+                      <MultiSelectorItem value={'Consultoria de TI'}>
                         Consultoria de TI
                       </MultiSelectorItem>
-                      <MultiSelectorItem value={'automacao'}>
+                      <MultiSelectorItem value={'Automacao'}>
                         Automação de processos
                       </MultiSelectorItem>
-                      <MultiSelectorItem value={'treinamentos'}>
+                      <MultiSelectorItem value={'Treinamentos'}>
                         Treinamentos
                       </MultiSelectorItem>
+                      <MultiSelectorItem value={'Desenvolvimento Web'}>
+                        Desenvolvimento Web
+                      </MultiSelectorItem>
                       {/* TODO: CAMPO PARA ESCREVRE QUE OUTRO */}
-                      <MultiSelectorItem value={'outros'}>
+                      <MultiSelectorItem value={'Outros'}>
                         Outros
                       </MultiSelectorItem>
                     </MultiSelectorList>
@@ -243,6 +251,29 @@ export default function MyForm() {
           )}
         />
 
+        {selectedServicos?.includes('Outros') && (
+          <FormField
+            control={form.control}
+            name="outro_servico"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Descreva o outro serviço</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Descreva aqui"
+                    className="resize-none"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Faça uma breve descrição do outro serviço que você queira{' '}
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
+
         <FormField
           control={form.control}
           name="novo_projeto"
@@ -250,7 +281,11 @@ export default function MyForm() {
             <FormItem>
               <FormLabel>Descrição do projeto</FormLabel>
               <FormControl>
-                <Textarea placeholder="" className="resize-none" {...field} />
+                <Textarea
+                  placeholder="Descreva aqui"
+                  className="resize-none"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 Faça uma breve descrição do seu projeto{' '}
@@ -267,7 +302,11 @@ export default function MyForm() {
             <FormItem>
               <FormLabel>Seu projeto atual</FormLabel>
               <FormControl>
-                <Textarea placeholder="" className="resize-none" {...field} />
+                <Textarea
+                  placeholder="Descreva aqui"
+                  className="resize-none"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 Você já possui alguma solução de dados/BI em uso? Se sim,
