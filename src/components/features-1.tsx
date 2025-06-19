@@ -9,11 +9,17 @@ import { ReactNode } from 'react';
 
 export default function Features() {
   return (
-    <section id="perfil" className="bg-background py-10 dark:bg-transparent">
+    <section
+      id="perfil"
+      className="bg-background py-6 md:py-12 dark:bg-transparent"
+    >
       <div className="@container mx-auto max-w-5xl px-6">
         <div className="text-center">
           <h2 className="text-balance text-4xl font-semibold lg:text-5xl">
             Perfil Profissional
+          </h2>
+          <h2 className="text-balance text-4xl font-semibold lg:text-5xl">
+            Luis Riberti
           </h2>
         </div>
         <div className="md:grid-cols-2 mx-auto mt-8 grid max-w-full gap-6 md:gap-10 *:text-center md:mt-16">
@@ -106,4 +112,3 @@ const CardDecorator = ({ children }: { children: ReactNode }) => (
     </div>
   </div>
 );
-

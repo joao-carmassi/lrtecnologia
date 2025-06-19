@@ -2,7 +2,7 @@ const Destaque = () => {
   return (
     <section
       id="destaque"
-      className="bg-primary text-background py-16 md:py-26 px-6 mx-auto"
+      className="bg-primary text-background py-12 md:py-24 px-6 mx-auto"
     >
       <div className="max-w-5xl mx-auto">
         <div className="text-center">

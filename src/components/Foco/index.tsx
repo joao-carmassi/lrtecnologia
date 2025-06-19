@@ -4,7 +4,7 @@ const Foco = () => {
   return (
     <section
       id="foco"
-      className="max-w-5xl py-8 md:py-22 px-6 mx-auto flex flex-col gap-y-5"
+      className="max-w-5xl py-6 md:py-12 px-6 mx-auto flex flex-col gap-y-5"
     >
       <div className="p-10 gap-20 bg-primary flex text-background shadow-md md:rounded-r-full">
         <div>

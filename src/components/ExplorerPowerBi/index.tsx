@@ -8,7 +8,10 @@ import ExportedImage from 'next-image-export-optimizer';
 
 const ExplorerPowerBi = () => {
   return (
-    <section id="power-bi" className="max-w-5xl py-14 md:py-20 px-6 mx-auto">
+    <section
+      id="power-bi"
+      className="max-w-5xl py-14 pt-10 md:py-20 px-6 mx-auto"
+    >
       <div className="text-center">
         <h2 className="text-balance text-2xl font-semibold lg:text-4xl">
           Explorar como Power BI, inteligência Artificial (IA) e Office 365
